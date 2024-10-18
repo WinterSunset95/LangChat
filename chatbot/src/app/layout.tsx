@@ -3,6 +3,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter'
 import { Roboto, Montserrat } from 'next/font/google'
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/theme";
+import './globals.css'
 
 const roboto = Roboto({
 	weight: ['100', '300', '400', '500', '700', '900'],

@@ -1,7 +1,19 @@
 from fastapi import FastAPI
 from bot import query
+from models import ChatRes
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+origins = ["http://localhost:3000"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def read_root():
@@ -17,5 +29,8 @@ async def read_chat(q: str | None = None, id: str | None = None):
         return {"chat": "No chat"}
 
     response = query(q, id)
+    toReturn = {
+        "success": response.content
+    }
+    return toReturn
 
-    return {"chat": str(response)}
